@@ -1,0 +1,37 @@
+
+detCanchasAncho(caminos, lenghtComp, sensProp):
+
+caminos: ShapeFile que describe los caminos del predio (al parecer generalmente con TIPOUSO = FCAM).
+lengthComp: Valor entero que expresa la cantidad de compraciones donde se cumple un aumento de ancho para que se considere cancha (default es 3).
+sensProp: Float que indica la proporción que debe cerecer el camino para que sea considerado cancha (default es 1.1).
+
+Retorna: Lista de Points de Shapely que indican las canchas detectadas.
+
+La función calcula los anchos tirando líneas entre puntos, luego al detectar que aumentó el ancho en un sensProp*100% se observa que se mantenga ese
+crecimiento en lenghtComp comparaciones mas, si se cumple las dos condiciones anteriores, se marca como cancha el lugar.
+
+Como afecta alterar lenghtComp:
+Al usar valores bajos, como 1 o 2, el detector se vuelve sensible a detectar como canchas cambios espontáneos de anchos, como en bifurcaciones o
+curvas. Mientras que al usar valores muy altos, como mayores a 10, puede ocurrir que no se detecten canchas que la describen una cantidad de puntos
+menor a lenghtComp.
+
+Como afecta alterar sensProp:
+En valores bajos, como 1.1 o menos, es podible que se detecten muchas canchas falsas especialmente en curvas, donde crece un poco el ancho. Y con
+valores muy altos no se detectan canchas que sun muy delgadas o crecen muy poco en comparacion con el camino a la que se encuentra conectada.
+
+Explicación de los valores default:
+Experimentalmente con los valores de lenghtComp=3 y sensProp=1.1, se detectan alrededor de un 98% de las canchas, pero a su vez, se obtienen muchos
+falsos positivos. Se decidió de todas maneras utilizar esos valores, ya que se considera aplicar un postprocesado sobre los resultados obtenidos.
+
+
+postJuntarPuntos(caminos, centros, separateTol)
+
+caminos: ShapeFile que describe los caminos del predio (al parecer generalmente con TIPOUSO = FCAM).
+centros: Lista de Points de Shapely de centros de canchas detectadas.
+separateTol: Valor entero que describe la distancia máxima a la cual se decide juntar los puntos.
+
+Retorna: Lista de Points de Shapely donde se eliminaron una gran cantidad de detecciones repetidas.
+
+La función "mezcla" los puntos que se encuentran a separetTol de distancia siempre y cuando la línea que conecta estos puntos se encuentra dentro
+del mismo camino. De esta forma se consigue eliminar múltiples detecciones para la misma cancha. Esta función se recomienda utilizarla con el
+resultado de detCanchasAncho(), ya que dicha función es susceptible a detectar múltiples veces la misma cancha.
