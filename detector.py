@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Polygon, LineString, Point, MultiPoint, MultiPolygon
 import numpy as np
 import statistics as stats
+from DCPA import *
 from funciones import *
 #from estadisticas2 import *
 
@@ -56,8 +57,8 @@ caminoCount = 1
 anchosCanchas = []
 
 canchas = []
-canchas, _ = centros_points(caminos, lengthComp, sensProp)
-sepCanchas = separar_canchas(canchas)
+canchas, _ = detCanchasAncho(caminos, lengthComp, sensProp)
+sepCanchas = postJuntarPuntos(canchas)
 
 centroides = gpd.GeoDataFrame(columns=["centro"],geometry = "centro")
 centroides['centro'] = sepCanchas
