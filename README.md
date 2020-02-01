@@ -4,7 +4,7 @@ Este detector de canchas consiste en dos fases:
 1. [Detectar posibles canchas calculando los anchos del camino.](#detector-por-anchos)
 2. [Pasar las posibles canchas por una red neuronal.](#red-neuronal-alexnet)
 
-Para hacer uso de este algoritmo se necesita la imagen del terreno en .tif y un shape file que delimite los caminos.
+El algoritmo principal se encuentra en [detector.py](detector.py). Para usarlo se necesita la imagen del terreno en .tif y un shape file que delimite los caminos.
 
 ---
 
