@@ -1,4 +1,4 @@
-# [Detector-de-canchas](#detector.py)
+# [Detector-de-canchas](detector.py)
 
 Este detector de canchas consiste en dos fases: 
 1. [Detectar posibles canchas calculando los anchos del camino.](#detector-por-anchos)
@@ -8,7 +8,7 @@ Para hacer uso de este algoritmo se necesita la imagen del terreno en .tif y un 
 
 ---
 
-## [Detector por anchos](#DCPA.py)
+## [Detector por anchos](DCPA.py)
 Resumen: Se recorren los caminos dados por el shape file y entre dos vértices se crea una línea perpendicular, con la cual se calcula el ancho del camino.
 
 ### Funciones usadas:
@@ -47,10 +47,10 @@ La función "mezcla" los puntos que se encuentran a separateTol de distancia sie
 
 ---
 
-## [Red neuronal AlexNet](#/finetune_alexnet)
+## [Red neuronal AlexNet](finetune_alexnet)
 **Código usado de AlexNet: [finetune_alexnet](https://github.com/kratzert/finetune_alexnet_with_tensorflow/tree/5d751d62eb4d7149f4e3fd465febf8f07d4cea9d)**
 
-### [cortar_imagen](#funciones.py)
+### [cortar_imagen](funciones.py)
 El proceso de las canchas consiste en tomar los puntos de las canchas y crear un cuadrado, cuyo centro es el punto marcado, para luego ubicarlo en la imagen del predio y cortar la imgen.
 
 - Parámtetros: 
@@ -66,11 +66,11 @@ El proceso de las canchas consiste en tomar los puntos de las canchas y crear un
     
 - Retorna: Un diccionario de tipo \[Nombre_de_imagen.jpg\] = id correspondiente a la cancha en **canchas**.
 
-### [usar_red](#funciones.py)
-Usa un [modelo previamente entrenado](#finetune_alexnet/tmp) para hacer las predicciones sobre las imágenes recortadas. Las imágenes a detectar deben estar en una carpeta llamada *Predict* en esta misma carpeta.
+### [usar_red](funciones.py)
+Usa un [modelo previamente entrenado](finetune_alexnet/tmp) para hacer las predicciones sobre las imágenes recortadas. Las imágenes a detectar deben estar en una carpeta llamada *Predict* en esta misma carpeta.
 
 - Parámetros:
     - **txt**: Nombre del archivo en formato .txt para guardar las predicciones.
-    - **num_modelo**: Número del modelo entrenado, se utiliza para saber su nombre. El número está relacionado con la cantidad de *epochs* con el que fue entrenado el modelo. Los modelos se encuentran en /finetune_alexnet/tmp
+    - **num_modelo**: Número del modelo entrenado, se utiliza para saber su nombre. El número está relacionado con la cantidad de *epochs* con el que fue entrenado el modelo. Los modelos se encuentran en [tmp](finetune_alexnet/tmp)
 
 - Retorna: Lista con el nombre de las imágenes que **si** son canchas.
