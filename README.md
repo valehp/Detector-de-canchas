@@ -33,7 +33,7 @@ La función calcula los anchos creando líneas entre puntos y detecta si el cami
     - En valores bajos, como 1.1 o menos, es posible que se detecten muchas canchas falsas, especialmente en las curvas, donde crece levemente el ancho.
     - Con valores muy altos no se detectan canchas muy delgadas o que crecen muy poco en comparación con el camino con el cual se conecta.
 - Valores default:
-    - Experimentalmente, con los valores de lengthComp = 3 y sensProp = 1.1, se detectan alrededor de un 98% de las canchas, pero a su vez, se obtienen muchos dalsos positivos.
+    - Experimentalmente, con los valores de lengthComp = 3 y sensProp = 1.1, se detectan alrededor de un 98% de las canchas, pero a su vez, se obtienen muchos falsos positivos.
     
 ### postJuntarPuntos
 - Parámetros:
